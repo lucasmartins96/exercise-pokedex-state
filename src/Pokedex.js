@@ -1,5 +1,6 @@
 import React from 'react';
 import Pokemon from './Pokemon';
+import './css/Pokedex.css';
 
 class Pokedex extends React.Component {
   constructor(props) {
@@ -40,9 +41,12 @@ class Pokedex extends React.Component {
           <Pokemon key={ filteredPokemons[index].id } pokemon={ filteredPokemons[index] } />
         </div>
         <div className="buttons">
+          <div className="type-pokemons">
+            <button onClick={ (event) => this.changeType(event, lenghtFilteredArr) }>Fire</button>
+            <button onClick={ (event) => this.changeType(event, lenghtFilteredArr) }>Psychic</button>
+
+          </div>
           <button onClick={ this.changeIndex }>Próximo pokemon</button>
-          <button onClick={ (event) => this.changeType(event, lenghtFilteredArr) }>Fire</button>
-          <button onClick={ (event) => this.changeType(event, lenghtFilteredArr) }>Psychic</button>
         </div>
       </div>
     );

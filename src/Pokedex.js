@@ -8,43 +8,45 @@ class Pokedex extends React.Component {
 
     this.state = {
       index: 0,
-      type: 'Fire',
-      lengthFilteredArr: 2,
+      pokemonsList: props.pokemons,
     }
     this.changeIndex = this.changeIndex.bind(this);
-    this.changeType = this.changeType.bind(this);
+    this.changeType = this.changePokemonType.bind(this);
   }
 
   changeIndex() {
-    const iterableIndex = this.state.lengthFilteredArr - 1;
+    const { pokemonsList: { length }} = this.state;
     this.setState((prevState, _props) => ({
-      index: (prevState.index === iterableIndex) ? 0 : prevState.index + 1
-    }))
+      index: (prevState.index + 1) % length,
+    }));
   }
 
-  changeType({ target: { innerText }}, length) {
+  changePokemonType({ target: { innerText }}, pokemons) {
     this.setState({
-      type: innerText,
-      lengthFilteredArr: length
+      index: 0,
+      pokemonsList: this.filterPokemonsByType(pokemons, innerText),
     })
+  }
+
+  filterPokemonsByType(pokemonsArr, type) {
+    return (type !== 'All') ? pokemonsArr.filter((pokemon) => pokemon.type === type)
+      : pokemonsArr;
   }
 
   
   render() {
     const { pokemons } = this.props;
-    const { index, type } = this.state;
-    const filteredPokemons = pokemons.filter((pokemon) => pokemon.type === type);
-    const lenghtFilteredArr = filteredPokemons.length;
+    const { index, pokemonsList } = this.state;
     return (
       <div>
         <div className="pokedex">
-          <Pokemon key={ filteredPokemons[index].id } pokemon={ filteredPokemons[index] } />
+          <Pokemon key={ pokemonsList[index].id } pokemon={ pokemonsList[index] } />
         </div>
         <div className="buttons">
           <div className="type-pokemons">
-            <button onClick={ (event) => this.changeType(event, lenghtFilteredArr) }>Fire</button>
-            <button onClick={ (event) => this.changeType(event, lenghtFilteredArr) }>Psychic</button>
-
+            <button onClick={ (event) => this.changePokemonType(event, pokemons) }>Fire</button>
+            <button onClick={ (event) => this.changePokemonType(event, pokemons) }>Psychic</button>
+            <button onClick={ (event) => this.changePokemonType(event, pokemons) }>All</button>
           </div>
           <button onClick={ this.changeIndex }>Próximo pokemon</button>
         </div>

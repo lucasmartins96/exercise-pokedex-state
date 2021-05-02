@@ -1,6 +1,7 @@
 import React from 'react';
 import Pokemon from './Pokemon';
 import './css/Pokedex.css';
+import Button from './components/Button';
 
 class Pokedex extends React.Component {
   constructor(props) {
@@ -9,7 +10,7 @@ class Pokedex extends React.Component {
     this.state = {
       index: 0,
       pokemonsList: props.pokemons,
-    }
+    };
     this.changeIndex = this.changeIndex.bind(this);
     this.changeType = this.changePokemonType.bind(this);
   }
@@ -21,22 +22,32 @@ class Pokedex extends React.Component {
     }));
   }
 
-  changePokemonType({ target: { innerText }}, pokemons) {
-    this.setState({
-      index: 0,
-      pokemonsList: this.filterPokemonsByType(pokemons, innerText),
-    })
-  }
-
   filterPokemonsByType(pokemonsArr, type) {
     return (type !== 'All') ? pokemonsArr.filter((pokemon) => pokemon.type === type)
       : pokemonsArr;
   }
 
-  
+  changePokemonType(pokemonType, pokemons) {
+    this.setState({
+      index: 0,
+      pokemonsList: this.filterPokemonsByType(pokemons, pokemonType),
+    });
+  }
+
+  getDistinctPokemonTypes(pokemons) {
+    return pokemons.reduce((acc, { type }) => {
+      const arrAcc = acc;
+      if (!arrAcc.includes(type)) {
+        arrAcc.push(type);
+      }
+      return arrAcc;
+    }, ['All']);
+  }
+
   render() {
     const { pokemons } = this.props;
     const { index, pokemonsList } = this.state;
+    const pokemonsType = this.getDistinctPokemonTypes(pokemons);
     return (
       <div>
         <div className="pokedex">
@@ -44,9 +55,12 @@ class Pokedex extends React.Component {
         </div>
         <div className="buttons">
           <div className="type-pokemons">
-            <button onClick={ (event) => this.changePokemonType(event, pokemons) }>Fire</button>
-            <button onClick={ (event) => this.changePokemonType(event, pokemons) }>Psychic</button>
-            <button onClick={ (event) => this.changePokemonType(event, pokemons) }>All</button>
+            { 
+              pokemonsType.map((type) => 
+                <Button changePokemonType={ () => this.changePokemonType(type, pokemons) }>
+                  { type }
+                </Button>)
+            }            
           </div>
           <button onClick={ this.changeIndex }>Próximo pokemon</button>
         </div>

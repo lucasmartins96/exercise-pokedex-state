@@ -50,8 +50,8 @@ class Pokedex extends React.Component {
     const pokemonsType = this.getDistinctPokemonTypes(pokemons);
     const { length } = pokemonsList;
     return (
-      <div>
-        <div className="pokedex">
+      <div className="pokedex">
+        <div className="pokemon-container">
           <Pokemon key={ pokemonsList[index].id } pokemon={ pokemonsList[index] } />
         </div>
         <div className="buttons">

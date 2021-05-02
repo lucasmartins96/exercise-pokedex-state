@@ -1,9 +1,10 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import './css/Button.css';
 
 class Button extends Component {
   render() {
     const { children, changePokemonType} = this.props;
-    return <button onClick={ changePokemonType }>{ children }</button>
+    return <button className="" onClick={ changePokemonType }>{ children }</button>
   }
 }
 

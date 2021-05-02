@@ -48,6 +48,7 @@ class Pokedex extends React.Component {
     const { pokemons } = this.props;
     const { index, pokemonsList } = this.state;
     const pokemonsType = this.getDistinctPokemonTypes(pokemons);
+    const { length } = pokemonsList;
     return (
       <div>
         <div className="pokedex">
@@ -62,7 +63,7 @@ class Pokedex extends React.Component {
                 </Button>)
             }
           </div>
-          <button onClick={ this.changeIndex }>Próximo pokemon</button>
+          <button className={ (length === 1) ? "disabled" : "" } onClick={ this.changeIndex }>Próximo pokemon</button>
         </div>
       </div>
     );

@@ -1,0 +1,82 @@
+.button {
+  background-color: white;
+  color: black;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.All{
+  animation: drop 15s infinite;
+}
+
+@keyframes drop {
+  0%, 100% { 
+    background-color: white;
+    border-color: black;
+  }
+  12% { 
+    background-color: #f8d13a;
+    border-color: #f8d13a;
+    color: black;
+  }
+  24% { 
+    background-color: #f0813b;
+    border-color: #f0813b;
+    color: black;
+  }
+  36% { 
+    background-color: #a8b820;
+    border-color: #a8b820;
+    color: black;
+  }
+  48% { 
+    background-color: #a8a878;
+    border-color: #a8a878;
+    color: black;
+  }
+  60% {
+    background-color: #a155a0;
+    border-color: #a155a0;
+    color: white;
+  }
+  72% { 
+    background-color: #f75888;
+    border-color: #f75888;
+    color: white;
+  }
+  84% { 
+    background-color: #787ef8;
+    border-color: #787ef8;
+    color: white;
+  }
+}
+
+
+.Electric { border-color: #f8d13a; }
+.Electric:hover { background-color: #f8d13a; }
+
+.Fire { border-color: #f0813b; }
+.Fire:hover { background-color: #f0813b; }
+
+.Bug { border-color: #a8b820; }
+.Bug:hover { background-color: #a8b820; }
+
+.Poison { border-color: #a155a0;}
+.Poison:hover { 
+  background-color: #a155a0;
+  color: white;
+}
+
+.Psychic { border-color: #f75888; }
+.Psychic:hover { 
+  background-color: #f75888;
+  color: white;
+}
+
+.Normal { border-color: #a8a878; }
+.Normal:hover { background-color: #a8a878; }
+
+.Dragon { border-color: #787ef8; }
+.Dragon:hover { 
+  background-color: #787ef8;
+  color: white;
+}

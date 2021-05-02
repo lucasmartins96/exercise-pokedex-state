@@ -55,12 +55,12 @@ class Pokedex extends React.Component {
         </div>
         <div className="buttons">
           <div className="type-pokemons">
-            { 
-              pokemonsType.map((type) => 
+            {
+              pokemonsType.map((type) =>
                 <Button changePokemonType={ () => this.changePokemonType(type, pokemons) }>
                   { type }
                 </Button>)
-            }            
+            }
           </div>
           <button onClick={ this.changeIndex }>Próximo pokemon</button>
         </div>
